@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
-import { View, Text, ImageBackground, Pressable } from 'react-native';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import theme from '../../theme/themeStyles';
-import styles from './styles';
-
-
+import { View, Text, ImageBackground, Pressable } from 'react-native'
+import Fontisto from 'react-native-vector-icons/Fontisto'
+import theme from '../../theme/themeStyles'
+import styles from './styles'
 
 const HomeScreen = (props) => {
 
