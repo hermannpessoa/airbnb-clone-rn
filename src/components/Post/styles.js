@@ -3,7 +3,8 @@ import theme from '../../theme/themeStyles'
 
 const styles = StyleSheet.create({
     container:{
-        width: Dimensions.get('window').width - 15,
+        width: Dimensions.get('window').width,
+        // backgroundColor: '#CCC',
         paddingTop: 20
     },
     image:{
@@ -26,7 +27,6 @@ const styles = StyleSheet.create({
         color: theme.text,
     },
     caroussel:{
-        left: -5,
         elevation: 1,
         zIndex: 1
     },
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 8
     },
     textContainer:{
-        paddingVertical: 10,
-        marginHorizontal: 20
+        paddingVertical: 15,
+        marginHorizontal: 25
     }
 })
 

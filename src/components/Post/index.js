@@ -37,8 +37,8 @@ const Post = (props) => {
                 <Carousel
                     data={ENTRIES1}
                     renderItem={_renderItem}
-                    sliderWidth={carouselWidth - 10}
-                    itemWidth={carouselWidth - 60}
+                    sliderWidth={carouselWidth}
+                    itemWidth={carouselWidth - 50}
                     onSnapToItem={(index) =>  paginar(index) }
                 />
                 <View style={[styles.pagination, {width: carouselWidth}]}>
