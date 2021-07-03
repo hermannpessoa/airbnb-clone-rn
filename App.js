@@ -2,7 +2,7 @@ import React from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
 
 import HomeScreen from './src/screens/Home'
-import DestinationSearchScreen from './src/screens/DestinationScearch'
+import GuestScreen from './src/screens/Guests'
 
 import theme from './src/theme/themeStyles'
 
@@ -15,7 +15,7 @@ export default () => {
       <StatusBar barStyle="light-content" backgroundColor={theme.primary} />
       <SafeAreaView>
           {/* <HomeScreen /> */}
-          <DestinationSearchScreen></DestinationSearchScreen>
+          <GuestScreen></GuestScreen>
       </SafeAreaView>
     </>
   )
