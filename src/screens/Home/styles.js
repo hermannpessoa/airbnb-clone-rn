@@ -4,7 +4,7 @@ import theme from '../../theme/themeStyles'
 const styles = StyleSheet.create({
     image: {
         width:'100%',
-        height:500,
+        height:430,
         resizeMode: 'cover',
         justifyContent: 'center',
         position: 'relative',

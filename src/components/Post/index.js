@@ -6,14 +6,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 const carouselWidth = Dimensions.get('screen').width;
 
 
-const ENTRIES1 = [
-    { illustration: 'https://i.imgur.com/UYiroysl.jpg' },
-    { illustration: 'https://i.imgur.com/UPrs1EWl.jpg' },
-    { illustration: 'https://i.imgur.com/MABUbpDl.jpg' },
-    { illustration: 'https://i.imgur.com/KZsmUi2l.jpg' },
-    { illustration: 'https://i.imgur.com/2nCt3Sbl.jpg' },
-    { illustration: 'https://i.imgur.com/lceHsT6l.jpg' }
-];
+
 
 let _renderItem = ({item, index}) => {
     return (
@@ -25,11 +18,22 @@ let _renderItem = ({item, index}) => {
 
 
 
-const Post = (props) => {
+const Post = ({data}) => {
     const [state, setState] = useState(0)
     const paginar = (index) => {
         setState(index)
     }
+
+    // insert post image to first position in array
+    const ENTRIES1 = [
+        { illustration: data.image},
+        { illustration: 'https://i.imgur.com/UYiroysl.jpg' },
+        { illustration: 'https://i.imgur.com/UPrs1EWl.jpg' },
+        { illustration: 'https://i.imgur.com/MABUbpDl.jpg' },
+        { illustration: 'https://i.imgur.com/KZsmUi2l.jpg' },
+        { illustration: 'https://i.imgur.com/2nCt3Sbl.jpg' },
+        { illustration: 'https://i.imgur.com/lceHsT6l.jpg' }
+    ];
 
    return (
         <View style={styles.container}>
@@ -56,23 +60,23 @@ const Post = (props) => {
             
             <View style={styles.textContainer}>
                 {/* bad & bedroom */}
-                <Text style={styles.bedrooms}>1 bed &bull; 1 bedroom</Text>
+                <Text style={styles.bedrooms}>{data.bed} bed{data.bed > 1 ? 's':''} &bull; {data.bedroom} bedroom{data.bedroom > 1 ? 's':''}</Text>
 
                 {/* title */}
                 {/* <Text style={styles.title}>Bright room in the heart of the city</Text> */}
 
                 {/* type & description */}
-                <Text numberOfLines={2} style={styles.description}>Private Room &bull; Lorem Ipsum is simply Lorem Ipsum is simply dummy text. Lorem Ipsum is simply Lorem Ipsum is simply dummy text</Text>
+                <Text numberOfLines={2} style={styles.description}>{data.type} &bull; {data.title}</Text>
                 
                 {/* prices */}
                 <Text style={styles.prices}>
-                    <Text style={styles.oldPrice}>$36</Text>
-                    <Text style={styles.price}>  $30 </Text>
+                    <Text style={styles.oldPrice}>${data.oldPrice}</Text>
+                    <Text style={styles.price}>  ${data.newPrice} </Text>
                     / night
                 </Text>
 
                 {/* total price */}
-                <Text style={styles.totalprice}>$247 total</Text>
+                <Text style={styles.totalprice}>${data.totalPrice} total</Text>
             </View>
         </View>
     )

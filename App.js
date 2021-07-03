@@ -1,21 +1,30 @@
 import React from 'react'
-import { SafeAreaView, StatusBar } from 'react-native'
+import { SafeAreaView, ScrollView, StatusBar } from 'react-native'
 
 import HomeScreen from './src/screens/Home'
 import Post from './src/components/Post'
 
+import theme from './src/theme/themeStyles'
+import feed from './assets/data/feed'
+
 //import Entype from 'react-native-vector-icons/Entypo'
 
-const App = () => {
+export default () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" backgroundColor={"#fff"}/>
+      <StatusBar barStyle="light-content" backgroundColor={theme.primary} />
       <SafeAreaView>
-        {/* <HomeScreen /> */}
-        <Post />
+        <ScrollView>
+          <HomeScreen />
+
+          {
+            /* feed list */
+            feed.map((item, k) =>
+              <Post key={k} data={item} />)
+          }
+        </ScrollView>
+
       </SafeAreaView>
     </>
   )
 }
-
-export default App

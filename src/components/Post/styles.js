@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     },
     image:{
         width: '100%',
-        aspectRatio: 3/2,
+        aspectRatio: 3/1.7,
         resizeMode: 'cover',
         borderRadius: 8
     },
