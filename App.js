@@ -1,8 +1,8 @@
 import React from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
+import 'react-native-gesture-handler'
 
-import HomeScreen from './src/screens/Home'
-import GuestScreen from './src/screens/Guests'
+import Router from './src/navigation/Router'
 
 import theme from './src/theme/themeStyles'
 
@@ -13,10 +13,7 @@ export default () => {
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor={theme.primary} />
-      <SafeAreaView>
-          {/* <HomeScreen /> */}
-          <GuestScreen></GuestScreen>
-      </SafeAreaView>
+      <Router />
     </>
   )
 }

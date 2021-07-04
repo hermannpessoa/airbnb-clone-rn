@@ -4,7 +4,11 @@ import Fontisto from 'react-native-vector-icons/Fontisto'
 import theme from '../../theme/themeStyles'
 import styles from './styles'
 
+import { useNavigation } from '@react-navigation/core'
+
 const HomeScreen = (props) => {
+
+    const navigation = useNavigation();
 
     return (
         <View>
@@ -15,7 +19,7 @@ const HomeScreen = (props) => {
                 </Pressable>
             </ImageBackground>
 
-            <Pressable style={styles.searchButton} onPress={() => console.warn('searchButton Pressed')}>
+            <Pressable style={styles.searchButton} onPress={() => navigation.navigate('Destination Search') }>
                 <Fontisto name="search" size={25} color={theme.primary} />
                 <Text style={styles.searchButtonText}>
                     Where are you going?
