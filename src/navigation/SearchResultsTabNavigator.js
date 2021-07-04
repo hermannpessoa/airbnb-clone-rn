@@ -8,7 +8,9 @@ const Tab = createMaterialTopTabNavigator()
 
 const SearchResultsTabNavigator = () => {
     return (
-        <Tab.Navigator tabBarOptions={{
+        <Tab.Navigator 
+        swipeEnabled={false}
+        tabBarOptions={{
             activeTintColor: theme.primary,
             indicatorStyle: {
                 backgroundColor: theme.primary,
@@ -19,7 +21,7 @@ const SearchResultsTabNavigator = () => {
         }}>
             <Tab.Screen 
                 name={'List'}
-                component={SearchResultScreen}
+                component={SearchResultScreen}                
             />
             <Tab.Screen 
                 name={'Map'}

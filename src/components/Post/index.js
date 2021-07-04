@@ -45,12 +45,36 @@ const Post = ({data}) => {
                     itemWidth={carouselWidth - 50}
                     onSnapToItem={(index) =>  paginar(index) }
                 />
-                <View style={[styles.pagination, {width: carouselWidth}]}>
+                <View style={[styles.pagination, {
+                    backgroundColor: '#fc0', 
+                    alignSelf: 'center',
+                    height: 10,
+                    width: 0,
+                    bottom: 20,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                    }]}>
                     <Pagination 
                         dotsLength={ENTRIES1.length}
                         activeDotIndex={state}
                         dotColor={'rgba(255, 255, 255, 0.92)'}
-                        dotStyle={styles.paginationDot}
+                        containerStyle={{ 
+                            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                            width: 1,
+                            height: 0,
+                            padding: 1,
+                            margin: 1,
+                            alignSelf: 'center',
+                            paddingHorizontal: 0,
+                            paddingVertical: 0
+                        }}
+                        dotStyle={{
+                            width: 10,
+                            height: 10,
+                            borderRadius: 5,
+                            marginHorizontal: -5,
+                            backgroundColor: 'rgba(255, 255, 255, 0.92)'
+                        }}
                         inactiveDotColor={'#fff'}
                         inactiveDotOpacity={0.4}
                         inactiveDotScale={0.7}

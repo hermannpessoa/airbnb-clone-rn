@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Text, View, TextInput, FlatList, Pressable } from 'react-native'
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 
 import styles from './styles'
-import Entype from 'react-native-vector-icons/Entypo'
 
 import searchResults from '../../../assets/data/search'
-import theme from '../../theme/themeStyles'
+import SuggestionRow from './SuggestionRow'
 
 import { useNavigation } from '@react-navigation/native'
 
-export default DestinationSearchScreen = () =>{
+export default DestinationSearchScreen = () => {
 
     const [inputText, setInputText] = useState('');
 
@@ -18,29 +18,33 @@ export default DestinationSearchScreen = () =>{
     return (
         <View style={styles.container}>
             {/* Input */}
-            <TextInput 
+            <GooglePlacesAutocomplete
+                placeholder='Where are you going?'
+                onPress={(data, details = null) => {
+                    // 'details' is provided when fetchDetails = true
+                    console.log(data, details);
+                    navigation.navigate('Guests')
+                }}
+                styles={{
+                    textInput: styles.textInput
+                }}
+                query={{
+                    key: 'AIzaSyB50xldtzz0UWyuXij9HO1mvGzETW2E60s',
+                    language: 'en',
+                    types: '(cities)'
+                }}
+                suppressDefaultStyles
+                renderRow={(item) => <SuggestionRow item={item} />}
+            />
+
+            {/* <TextInput
                 style={styles.textInput}
                 placeholder={'Where are you going?'}
                 value={inputText}
                 onChangeText={setInputText}
-            />
+            /> */}
 
-            {/* List of Destinations */}
-            <FlatList
-                data={searchResults}
-                renderItem={ ({item}) => 
-                    <Pressable style={styles.row}
-                        onPress={() => navigation.navigate('Guests')}
-                    >
-                        <View style={styles.iconContainer}>
-                            <Entype name={'location-pin'} size={30} color={theme.text}/>
-                        </View>
-                        <Text style={styles.locationText}>{item.description}</Text>
-                    </Pressable>
-                }
-            />
 
-            
         </View>
     )
 }

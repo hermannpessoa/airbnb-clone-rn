@@ -2,7 +2,9 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container:{
-        margin: 20
+        padding: 20,
+        height: '100%',
+        backgroundColor: '#FFF'
     },
     textInput:{
         fontSize: 20,

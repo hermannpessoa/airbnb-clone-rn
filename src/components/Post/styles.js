@@ -47,17 +47,17 @@ const styles = StyleSheet.create({
         color: theme.text,
     },
     pagination:{
-        width: '50%',
-        position: 'absolute',
-        bottom: 0,
-        elevation: 2,
-        zIndex: 2
+        // width: '50%',
+        // position: 'absolute',
+        // bottom: 0,
+        // elevation: 2,
+        // zIndex: 2
     },
     paginationDot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        marginHorizontal: 8
+        // width: 8,
+        // height: 8,
+        // borderRadius: 4,
+        // marginHorizontal: 8
     },
     textContainer:{
         paddingVertical: 15,
