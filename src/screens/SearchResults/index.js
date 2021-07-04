@@ -7,7 +7,7 @@ import feed from '../../../assets/data/feed';
 
 const SearchResultScreen = (props) => {
     return(
-        <View>
+        <View style={{backgroundColor: '#fbfbfb'}}>
             <FlatList
                 data={feed}
                 renderItem={ ({item}) => <Post data={item} /> }

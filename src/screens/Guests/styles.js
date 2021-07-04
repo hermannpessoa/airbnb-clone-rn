@@ -26,18 +26,18 @@ export default StyleSheet.create({
         borderRadius: 50,
         borderColor: '#ccc',
         borderWidth: 1,
-        width: 30,
-        height: 30,
+        width: 40,
+        height: 40,
         alignItems: 'center',
         justifyContent: 'center',
     },
     buttonText:{
-        fontSize: 20,
+        fontSize: 25,
         color: theme.text
     },
     counter:{
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 18,
         marginHorizontal: 25
     }
 })

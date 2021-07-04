@@ -15,7 +15,7 @@ export default GuestScreen = () => {
     const [infants, setInfants] = useState(0)
 
     return (
-        <View style={{justifyContent: 'space-between', height: '100%'}}>
+        <View style={{justifyContent: 'space-between', height: '100%', backgroundColor: '#fbfbfb'}}>
             <View>
                 {/* Adult Row */}
                 <View style={styles.row}>
