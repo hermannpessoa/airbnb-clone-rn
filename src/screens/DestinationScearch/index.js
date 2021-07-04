@@ -34,6 +34,7 @@ export default DestinationSearchScreen = () => {
                     types: '(cities)'
                 }}
                 suppressDefaultStyles
+                enablePoweredByContainer={false}
                 renderRow={(item) => <SuggestionRow item={item} />}
             />
 
