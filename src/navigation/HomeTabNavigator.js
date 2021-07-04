@@ -10,6 +10,7 @@ import Feather from 'react-native-vector-icons/Feather'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 
 import HomeScreen from '../screens/Home'
+import ExploreNavigator from './ExploreNavigator'
 
 const Tab = createBottomTabNavigator();
 
@@ -21,12 +22,20 @@ export default HomeTabNavigator = () => {
 
     return (
         <Tab.Navigator tabBarOptions={{
-            activeTintColor: theme.primary
+            activeTintColor: theme.primary,
+            labelStyle: {
+                fontSize: 12
+            },
+            style: {
+                paddingTop: 8,
+                paddingBottom: 8,
+                height: 60
+            }
         }}>
     
             <Tab.Screen
                 name={'Explore'}
-                component={HomeScreen}
+                component={ExploreNavigator}
                 options={{
                     tabBarIcon: ({color}) => 
                         <Fontisto name={"search"} size={25} color={color} />
@@ -43,7 +52,7 @@ export default HomeTabNavigator = () => {
             />
 
             <Tab.Screen 
-                name={'Airnbnb'}
+                name={'Airbnb'}
                 component={HomeScreen}
                 options={{
                     tabBarIcon: ({color}) => 

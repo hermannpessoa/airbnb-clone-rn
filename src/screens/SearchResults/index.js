@@ -5,7 +5,7 @@ import Post from '../../components/Post';
 
 import feed from '../../../assets/data/feed';
 
-const SearchResourceScreen = (props) => {
+const SearchResultScreen = (props) => {
     return(
         <View>
             <FlatList
@@ -15,4 +15,4 @@ const SearchResourceScreen = (props) => {
         </View>
     )
 }
-export default SearchResourceScreen
+export default SearchResultScreen

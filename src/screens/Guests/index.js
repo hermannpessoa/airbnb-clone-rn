@@ -89,7 +89,12 @@ export default GuestScreen = () => {
             
             <View>
                 <Pressable 
-                onPress={() => navigation.navigate('Explore')}
+                onPress={() => navigation.navigate('Home', {
+                    screen: 'Explore',
+                    params: {
+                        screen: 'Search Results'
+                    }
+                })}
                 style={{
                     backgroundColor: theme.primary, 
                     color: 'white', 
