@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import MapView from 'react-native-maps'
+import { View, Text, StyleSheet } from 'react-native'
+import MapView, { Marker}  from 'react-native-maps'
 
 const styles = StyleSheet.create({
     container: {
@@ -13,6 +13,17 @@ const styles = StyleSheet.create({
     map: {
         ...StyleSheet.absoluteFillObject,
     },
+    bubbleMarker:{
+        backgroundColor: '#fff',
+        paddingHorizontal: 8,
+        paddingVertical: 2,
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: '#ccc'
+    },
+    bubbleMarkerText:{
+        fontWeight: 'bold'
+    }
 });
 
 
@@ -21,12 +32,19 @@ export default () => (
       <MapView
         style={styles.map}
         region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
+          latitude: 28.3279822,
+          longitude: -16.5124847,
+          latitudeDelta: 0.8,
+          longitudeDelta: 0.8,
         }}
       >
+
+        <Marker coordinate={{latitude: 28.3279822, longitude: -16.5124847}}>
+            <View style={styles.bubbleMarker}>
+                <Text style={styles.bubbleMarkerText}>$300</Text>
+            </View>
+        </Marker>
+
       </MapView>
     </View>
  );
