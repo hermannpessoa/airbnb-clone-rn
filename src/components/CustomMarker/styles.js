@@ -6,7 +6,9 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         borderRadius: 50,
         borderWidth: 1,
-        borderColor: '#ccc'
+        borderColor: '#ccc',
+        elevation: 0,
+        zIndex: 0
     },
     bubbleMarkerText:{
         fontWeight: 'bold',

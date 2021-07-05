@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 
@@ -24,17 +24,60 @@ const styles = StyleSheet.create({
 const SearchResultsMap = () => {
 
     const [selectedPlaceId, setSelectedPlaceId] = useState(null);
+
+    const [selectedPlace, setSelectedPlace] = useState({
+        latitude: 28.3279822,
+        longitude: -16.5124847,
+        latitudeDelta: 0.8,
+        longitudeDelta: 0.8,
+    })
+
+    const [fakeRegion, setFakeRegion] = useState(null)
+
     const width = Dimensions.get('screen').width
+
+    const flatList = useRef()
+
+    const map = useRef()
+    
+    const viewConfig = useRef({itemVisiblePercentThreshold: 100})
+
+    const onViewChanged = useRef(({viewableItems}) => {
+        if(!viewableItems.length) return
+        const selectedPlace = viewableItems[0]?.item
+        setSelectedPlaceId(selectedPlace.id)
+    })
+
+    const onRegionChangeComplete = useRef((item) => {
+        console.log(item)
+        setSelectedPlace(fakeRegion)
+    })
+
+    useEffect(() => {
+        if(!selectedPlaceId || !flatList) return;
+        let index = feed.findIndex(el => el.id == selectedPlaceId);
+        flatList.current.scrollToIndex({index})
+        const newPlace = feed[index]
+        const region = {
+            latitude: newPlace.coordinate.latitude,
+            longitude: newPlace.coordinate.longitude,
+            latitudeDelta: 0.8,
+            longitudeDelta: 0.8
+        }
+        
+        map.current.animateToRegion(region)
+
+        setSelectedPlace(region)
+
+    },[selectedPlaceId])
+
     return (
         <View style={styles.container}>
             <MapView
+                ref={map}
                 style={styles.map}
-                region={{
-                    latitude: 28.3279822,
-                    longitude: -16.5124847,
-                    latitudeDelta: 0.8,
-                    longitudeDelta: 0.8,
-                }}
+                region={selectedPlace}
+                onRegionChangeComplete={onRegionChangeComplete.current}
             >
                 {feed.map(item => 
                     <CustomMarkers 
@@ -49,11 +92,14 @@ const SearchResultsMap = () => {
             </MapView>
             <View style={{position: 'absolute', bottom: 0}}>
                 <FlatList
+                    ref={flatList}
                     data={feed}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                     snapToInterval={width - 40}
                     decelerationRate={'fast'}
+                    viewabilityConfig={viewConfig.current}
+                    onViewableItemsChanged={onViewChanged.current}
                     renderItem={({item}) => <PostCarouselItem data={item} />}
                 />
             </View>

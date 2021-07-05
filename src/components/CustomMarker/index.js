@@ -7,13 +7,16 @@ import styles from './styles'
 const CustomMarkers = (props) => {
     const { coordinate, price, onPress, isSelected } = props;
     return (
-        <Marker coordinate={coordinate} onPress={onPress}>
+        <Marker coordinate={coordinate} onPress={onPress} style={{
+            elevation: isSelected ? 999 : 1,
+            zIndex: isSelected ? 999 : 0
+        }}>
             <View style={
                 [
                     styles.bubbleMarker, 
                     {
                         backgroundColor: isSelected ? 'black':'white',
-                        borderColor: isSelected ? 'black':'#ccc'
+                        borderColor: isSelected ? 'black':'#ccc',
                     }
                 ]
             }>

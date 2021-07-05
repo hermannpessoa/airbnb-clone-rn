@@ -2,62 +2,61 @@ import { StyleSheet, Dimensions } from "react-native"
 import theme from '../../theme/themeStyles'
 
 const styles = StyleSheet.create({
-    container:{        
+    container: {
         height: 120,
         paddingHorizontal: 15,
-        
     },
-    innerContainer:{
+    innerContainer: {
         flexDirection: 'row',
         backgroundColor: 'white',
         borderRadius: 5,
         overflow: 'hidden',
         shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 3,
-},
-shadowOpacity: 0.29,
-shadowRadius: 4.65,
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
 
-elevation: 7,
+        elevation: 7,
     },
-    image:{
+    image: {
         width: 100,
-        aspectRatio: 1/1,
+        aspectRatio: 1 / 1,
         resizeMode: 'cover',
     },
-    bedrooms:{
+    bedrooms: {
         fontSize: 12,
         color: theme.text,
         // marginBottom: 5
     },
-    title:{
+    title: {
         fontSize: 14,
         fontWeight: 'bold'
     },
-    description:{
+    description: {
         fontSize: 14,
         color: theme.text,
         fontWeight: 'bold'
     },
-    prices:{
+    prices: {
         fontSize: 16,
         // marginTop: 5
     },
-    oldPrice:{
+    oldPrice: {
         color: theme.text,
         textDecorationLine: 'line-through',
     },
-    price:{
+    price: {
         fontWeight: 'bold'
     },
-    totalprice:{
+    totalprice: {
         fontSize: 16,
         textDecorationLine: 'underline',
         color: theme.text,
     },
-    textContainer:{
+    textContainer: {
         paddingVertical: 10,
         marginHorizontal: 10,
         flex: 1,
