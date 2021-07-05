@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import MapView, { Marker}  from 'react-native-maps'
+import MapView from 'react-native-maps'
+
+import CustomMarkers from '../../components/CustomMarker'
+import PostCarouselItem from '../../components/PostCarouselItem'
+
+import feed from '../../../assets/data/feed';
 
 const styles = StyleSheet.create({
     container: {
@@ -13,38 +18,39 @@ const styles = StyleSheet.create({
     map: {
         ...StyleSheet.absoluteFillObject,
     },
-    bubbleMarker:{
-        backgroundColor: '#fff',
-        paddingHorizontal: 8,
-        paddingVertical: 2,
-        borderRadius: 50,
-        borderWidth: 1,
-        borderColor: '#ccc'
-    },
-    bubbleMarkerText:{
-        fontWeight: 'bold'
-    }
 });
 
 
-export default () => (
-    <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        region={{
-          latitude: 28.3279822,
-          longitude: -16.5124847,
-          latitudeDelta: 0.8,
-          longitudeDelta: 0.8,
-        }}
-      >
+const SearchResultsMap = () => {
 
-        <Marker coordinate={{latitude: 28.3279822, longitude: -16.5124847}}>
-            <View style={styles.bubbleMarker}>
-                <Text style={styles.bubbleMarkerText}>$300</Text>
+    const [selectedPlaceId, setSelectedPlaceId] = useState(null);
+    return (
+        <View style={styles.container}>
+            <MapView
+                style={styles.map}
+                region={{
+                    latitude: 28.3279822,
+                    longitude: -16.5124847,
+                    latitudeDelta: 0.8,
+                    longitudeDelta: 0.8,
+                }}
+            >
+                {feed.map(item => 
+                    <CustomMarkers 
+                        key={item.id} 
+                        coordinate={item.coordinate} 
+                        price={item.newPrice} 
+                        isSelected={item.id == selectedPlaceId}
+                        onPress={() => setSelectedPlaceId(item.id)}
+                    />
+                )}
+
+            </MapView>
+            <View style={{position: 'absolute', bottom: 10}}>
+                <PostCarouselItem data={feed[0]} />
             </View>
-        </Marker>
+        </View>
+    )
+};
 
-      </MapView>
-    </View>
- );
+export default SearchResultsMap;
