@@ -22,13 +22,13 @@ export default DestinationSearchScreen = () => {
                 placeholder='Where are you going?'
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
-                    console.log('DATA ==> ', data);
-                    console.log('DETAILS ==> ', details);
-                    
+                    // console.log('DATA ==> ', data);
+                    // console.log('DETAILS ==> ', details);
                     navigation.navigate('Guests')
                 }}
                 styles={{
-                    textInput: styles.textInput
+                    textInput: styles.textInput,
+                    loader: {backgroundColor: '#f00'}
                 }}
                 query={{
                     key: 'AIzaSyB50xldtzz0UWyuXij9HO1mvGzETW2E60s',

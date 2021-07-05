@@ -46,14 +46,12 @@ const SearchResultsMap = () => {
 
     const onViewChanged = useRef(({viewableItems}) => {
         if(!viewableItems.length) return
-
         clearInterval(controlTimer);
         const selectedPlace = viewableItems[0]?.item
-        controlTimer = setTimeout(() => setSelectedPlaceId(selectedPlace.id), 400)
+        controlTimer = setTimeout(() => setSelectedPlaceId(selectedPlace.id), 200)
     })
 
     const onRegionChangeComplete = useRef((item) => {
-        console.log(item)
         clearInterval(controlTimer);
         controlTimer = setTimeout(() => setSelectedPlace(fakeRegion), 400)
     })
@@ -66,13 +64,11 @@ const SearchResultsMap = () => {
         const region = {
             latitude: newPlace.coordinate.latitude,
             longitude: newPlace.coordinate.longitude,
-            latitudeDelta: 0.8,
-            longitudeDelta: 0.8
+            latitudeDelta: 0.7,
+            longitudeDelta: 0.7
         }
         
-        map.current.animateToRegion(region, 50)
-
-        //setSelectedPlace(region)
+        map.current.animateToRegion(region, 250)
 
     },[selectedPlaceId])
 
