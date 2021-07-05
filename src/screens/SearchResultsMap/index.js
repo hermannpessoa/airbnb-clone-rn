@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
 
 import CustomMarkers from '../../components/CustomMarker'
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 const SearchResultsMap = () => {
 
     const [selectedPlaceId, setSelectedPlaceId] = useState(null);
+    const width = Dimensions.get('screen').width
     return (
         <View style={styles.container}>
             <MapView
@@ -46,8 +47,15 @@ const SearchResultsMap = () => {
                 )}
 
             </MapView>
-            <View style={{position: 'absolute', bottom: 10}}>
-                <PostCarouselItem data={feed[0]} />
+            <View style={{position: 'absolute', bottom: 0}}>
+                <FlatList
+                    data={feed}
+                    horizontal
+                    showsHorizontalScrollIndicator = {false}
+                    snapToInterval={width - 40}
+                    decelerationRate={'fast'}
+                    renderItem={({item}) => <PostCarouselItem data={item} />}
+                />
             </View>
         </View>
     )

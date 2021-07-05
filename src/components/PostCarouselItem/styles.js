@@ -4,13 +4,23 @@ import theme from '../../theme/themeStyles'
 const styles = StyleSheet.create({
     container:{        
         height: 120,
-        padding: 5
+        paddingHorizontal: 15,
+        
     },
     innerContainer:{
         flexDirection: 'row',
         backgroundColor: 'white',
         borderRadius: 5,
         overflow: 'hidden',
+        shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 3,
+},
+shadowOpacity: 0.29,
+shadowRadius: 4.65,
+
+elevation: 7,
     },
     image:{
         width: 100,
