@@ -39,18 +39,23 @@ const SearchResultsMap = () => {
     const flatList = useRef()
 
     const map = useRef()
+
+    let controlTimer = null
     
     const viewConfig = useRef({itemVisiblePercentThreshold: 100})
 
     const onViewChanged = useRef(({viewableItems}) => {
         if(!viewableItems.length) return
+
+        clearInterval(controlTimer);
         const selectedPlace = viewableItems[0]?.item
-        setSelectedPlaceId(selectedPlace.id)
+        controlTimer = setTimeout(() => setSelectedPlaceId(selectedPlace.id), 400)
     })
 
     const onRegionChangeComplete = useRef((item) => {
         console.log(item)
-        setSelectedPlace(fakeRegion)
+        clearInterval(controlTimer);
+        controlTimer = setTimeout(() => setSelectedPlace(fakeRegion), 400)
     })
 
     useEffect(() => {
@@ -65,9 +70,9 @@ const SearchResultsMap = () => {
             longitudeDelta: 0.8
         }
         
-        map.current.animateToRegion(region)
+        map.current.animateToRegion(region, 50)
 
-        setSelectedPlace(region)
+        //setSelectedPlace(region)
 
     },[selectedPlaceId])
 
