@@ -6,6 +6,7 @@ import DestinationSearchScreen from '../screens/DestinationScearch'
 import GuestScreen from '../screens/Guests'
 
 import HomeTabNavigator from './HomeTabNavigator'
+import PostScreen from '../screens/PostScreen'
 
 const Stack  = createStackNavigator();
 
@@ -36,6 +37,14 @@ export default Router = () => {
                     component={ GuestScreen }
                     options={{
                         title: 'Who travels with you?'
+                    }}
+                />
+
+                <Stack.Screen 
+                    name={"Post"}
+                    component={ PostScreen }
+                    options={{
+                        title: 'Accomodation'
                     }}
                 />
                 

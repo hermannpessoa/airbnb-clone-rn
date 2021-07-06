@@ -1,20 +1,15 @@
-import React, { useState } from "react"
-import {View, Text, Dimensions, Image} from 'react-native'
+import React, { useState, useRef } from "react"
+import {View, Text, Dimensions, Image, Pressable} from 'react-native'
 import styles from './styles'
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { useNavigation } from "@react-navigation/native";
 
 const carouselWidth = Dimensions.get('screen').width;
 
 
 
 
-let _renderItem = ({item, index}) => {
-    return (
-        <View>
-            <Image style={styles.image} source={{uri: item.illustration}} />
-        </View>
-    );
-}
+
 
 
 
@@ -23,6 +18,22 @@ const Post = ({data}) => {
     const paginar = (index) => {
         setState(index)
     }
+
+    const navigation = useNavigation();
+    const gotoPostPage = () =>{
+        navigation.navigate('Post', {postId: data.id})
+    }
+
+    const _renderItem = ({item, index}) => {
+        return (
+            <Pressable onPress={gotoPostPage}>
+                <Image style={styles.image} source={{uri: item.illustration}} />
+            </Pressable>
+        );
+    }
+
+
+    
 
     // insert post image to first position in array
     const ENTRIES1 = [
@@ -82,7 +93,7 @@ const Post = ({data}) => {
                 </View>
             </View>
             
-            <View style={styles.textContainer}>
+            <Pressable onPress={gotoPostPage} style={styles.textContainer}>
                 {/* bad & bedroom */}
                 <Text style={styles.bedrooms}>{data.bed} bed{data.bed > 1 ? 's':''} &bull; {data.bedroom} bedroom{data.bedroom > 1 ? 's':''}</Text>
 
@@ -101,7 +112,7 @@ const Post = ({data}) => {
 
                 {/* total price */}
                 <Text style={styles.totalprice}>${data.totalPrice} total</Text>
-            </View>
+            </Pressable>
         </View>
     )
 }
