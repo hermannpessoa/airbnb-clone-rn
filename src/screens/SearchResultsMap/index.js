@@ -48,12 +48,12 @@ const SearchResultsMap = () => {
         if(!viewableItems.length) return
         clearInterval(controlTimer);
         const selectedPlace = viewableItems[0]?.item
-        controlTimer = setTimeout(() => setSelectedPlaceId(selectedPlace.id), 200)
+        controlTimer = setTimeout(() => setSelectedPlaceId(selectedPlace.id), 100)
     })
 
     const onRegionChangeComplete = useRef((item) => {
         clearInterval(controlTimer);
-        controlTimer = setTimeout(() => setSelectedPlace(fakeRegion), 400)
+        controlTimer = setTimeout(() => setSelectedPlace(fakeRegion), 100)
     })
 
     useEffect(() => {
