@@ -5,7 +5,10 @@ import MapView from 'react-native-maps'
 import CustomMarkers from '../../components/CustomMarker'
 import PostCarouselItem from '../../components/PostCarouselItem'
 
-import feed from '../../../assets/data/feed';
+// import feed from '../../../assets/data/feed';
+
+import { API, graphqlOperation } from 'aws-amplify';
+import { listPosts } from '../../graphql/queries'
 
 const styles = StyleSheet.create({
     container: {
@@ -32,6 +35,8 @@ const SearchResultsMap = () => {
         longitudeDelta: 0.8,
     })
 
+    const [posts, setPosts] = useState([])
+
     const [fakeRegion, setFakeRegion] = useState(null)
 
     const width = Dimensions.get('screen').width
@@ -56,14 +61,30 @@ const SearchResultsMap = () => {
         controlTimer = setTimeout(() => setSelectedPlace(fakeRegion), 100)
     })
 
+    useEffect(() =>{
+        const fetchPosts = async () => {
+            try {
+                
+                const postResults = await API.graphql(graphqlOperation(listPosts))
+
+                setPosts(postResults.data.listPosts.items)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        fetchPosts();
+    },[])
+
     useEffect(() => {
         if(!selectedPlaceId || !flatList) return;
-        let index = feed.findIndex(el => el.id == selectedPlaceId);
+        let index = posts.findIndex(el => el.id == selectedPlaceId);
         flatList.current.scrollToIndex({index})
-        const newPlace = feed[index]
+        const newPlace = posts[index]
         const region = {
-            latitude: newPlace.coordinate.latitude,
-            longitude: newPlace.coordinate.longitude,
+            latitude: newPlace.latitude,
+            longitude: newPlace.longitude,
             latitudeDelta: 0.7,
             longitudeDelta: 0.7
         }
@@ -80,10 +101,10 @@ const SearchResultsMap = () => {
                 region={selectedPlace}
                 onRegionChangeComplete={onRegionChangeComplete.current}
             >
-                {feed.map(item => 
+                {posts.map(item => 
                     <CustomMarkers 
                         key={item.id} 
-                        coordinate={item.coordinate} 
+                        coordinate={{latitude: item.latitude, longitude: item.longitude}} 
                         price={item.newPrice} 
                         isSelected={item.id == selectedPlaceId}
                         onPress={() => setSelectedPlaceId(item.id)}
@@ -94,7 +115,7 @@ const SearchResultsMap = () => {
             <View style={{position: 'absolute', bottom: 0}}>
                 <FlatList
                     ref={flatList}
-                    data={feed}
+                    data={posts}
                     horizontal
                     showsHorizontalScrollIndicator = {false}
                     snapToInterval={width - 40}

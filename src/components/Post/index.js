@@ -111,7 +111,7 @@ const Post = ({data}) => {
                 </Text>
 
                 {/* total price */}
-                <Text style={styles.totalprice}>${data.totalPrice} total</Text>
+                <Text style={styles.totalprice}>${data.newPrice * 7} total</Text>
             </Pressable>
         </View>
     )
